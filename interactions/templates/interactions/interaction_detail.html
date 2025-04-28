@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Interaction Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Interaction Detail</h1>
+        <div class="card">
+            <div class="card-body">
+                <h2>Interaction Data</h2>
+                {%for serializer_datas in interactions_data%}
+                <ul>
+                    <li><strong>Interaction Date:</strong> {{ serializer_datas.interaction_date }}</li>
+                    <li><strong>Call Status:</strong> {{ serializer_datas.call_status }}</li>
+                    <li><strong>Call Notes:</strong> {{ serializer_datas.call_notes }}</li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

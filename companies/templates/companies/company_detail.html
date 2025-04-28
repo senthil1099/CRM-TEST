@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Company Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include 'companies/nav-bar.html' %}
+
+    <h1>Company Detail</h1>
+    <div class="container-fluid">
+        <div class="card-body">
+            <h2>Company Data</h2>
+            <ul>
+                <li><strong>Name:</strong> {{ serializer_data.name }}</li>
+                <li><strong>Industry:</strong> {{ serializer_data.industry }}</li>
+                <li><strong>Website:</strong> {{ serializer_data.website }}</li>
+                <li><strong>Phone Number:</strong> {{ serializer_data.phone_number }}</li>
+                <li><strong>Address:</strong> {{ serializer_data.address }}</li>
+                <li><strong>City:</strong> {{ serializer_data.city }}</li>
+                <li><strong>State:</strong> {{ serializer_data.state }}</li>
+                <li><strong>Postal Code:</strong> {{ serializer_data.postal_code }}</li>
+                <li><strong>Country:</strong> {{ serializer_data.country }}</li>
+                <li><strong>Notes:</strong> {{ serializer_data.notes }}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="card mt-3">
+        <div class="card-body">
+            {%for contact in serializers_data%}
+            <h5 class="card-title">{{ contact.first_name }} {{ contact.last_name }}</h5>
+            <p class="card-text">Email: {{ contact.email }}</p>
+            <p class="card-text">Phone Number: {{ contact.phone_number }}</p>
+            <p class="card-text">Job Title: {{ contact.job_title }}</p>
+            <p class="card-text">Department: {{ contact.department }}</p>
+            <p class="card-text">Notes: {{ contact.notes }}</p>
+            {%endfor%}
+        </div>
+    </div>
+    <div class="container mt-5">
+        <h1>Interaction Detail</h1>
+        <div class="card">
+            <div class="card-body">
+                <h2>Interaction Data</h2>
+                {%for serializer_datas in serializerss_data%}
+                <ul>
+                    <li><strong>Interaction Date:</strong> {{ serializer_datas.interaction_date}}</li>
+                    <li><strong>Call Status:</strong> {{ serializer_datas.call_status }}</li>
+                    <li><strong>Call Notes:</strong> {{ serializer_datas.call_notes }}</li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+{% load static %}
+{% load bootstrap_icons %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Company List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    {% include 'companies/nav-bar.html' %}
+    
+    <div id= "main" ,class="container-fluid">
+        <div class="row">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <div class="container">
+                    <h1 class="mt-4">Companies</h1>
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Industry</th>
+                                <th>Website</th>
+                                <th>Contact</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Postal Code</th>
+                                <th>Country</th>
+                                <th>Actions</th>
+                                <th>contact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for company in companies %}
+                                <tr>
+                                    <td>{{ company.name }}</td>
+                                    <td>{{ company.industry }}</td>
+                                    <td>{{ company.website }}</td>
+                                    <td>{{ company.phone_number }}</td>
+                                    <td>{{ company.address }}</td>
+                                    <td>{{ company.city }}</td>
+                                    <td>{{ company.state }}</td>
+                                    <td>{{ company.postal_code }}</td>
+                                    <td>{{ company.country }}</td>
+                                    <td>
+                                        <a href="{% url 'companies:edit_company' company.id %}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'contacts:add_contact' company.id %}" class="btn btn-primary"><i class="bi bi-plus-square"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

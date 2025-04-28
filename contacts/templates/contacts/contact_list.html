@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact List</title>
+    <!-- Add Bootstrap CSS here or link to a Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <div id= "main" ,class="container-fluid">
+        {% include 'companies/nav-bar.html' %}
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <div class="container">
+        <h1 class="mt-5">Contact List</h1>
+        
+        <table class="table table-bordered mt-3">
+            <thead class="thead-dark">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Job Title</th>
+                    <th>Department</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contact%}
+                    <tr>
+                        <td>{{ contact.first_name }}</td>
+                        <td>{{ contact.last_name }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.phone_number }}</td>
+                        <td>{{ contact.job_title }}</td>
+                        <td>{{ contact.department }}</td>
+                        <td>
+                            <a href="{% url 'contacts:edit_contact' contact.id %}" class="btn btn-primary">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        {% comment %} <a class="btn btn-primary" href="{% url 'add_contact' %}">Add Contact</a> {% endcomment %}
+    </div>
+</body>
+</html>

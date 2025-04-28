@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Detail</title>
+    <!-- Add Bootstrap CSS here or link to a Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <div id= "main" ,class="container-fluid">
+        {% include 'companies/nav-bar.html' %}
+        <h1 class="mt-5">Contact Detail</h1>
+        
+        <div class="card mt-3">
+            <div class="card-body">
+                {%for contact in serializer_data%}
+                <h5 class="card-title">{{ contact.first_name }} {{ contact.last_name }}</h5>
+                <p class="card-text">Email: {{ contact.email }}</p>
+                <p class="card-text">Phone Number: {{ contact.phone_number }}</p>
+                <p class="card-text">Job Title: {{ contact.job_title }}</p>
+                <p class="card-text">Department: {{ contact.department }}</p>
+                <p class="card-text">Notes: {{ contact.notes }}</p>
+                {%endfor%}
+            </div>
+        </div>
+        
+        <a class="btn btn-primary mt-3" href="{% url 'contacts:contact_list' %}">Back to Contact List</a>
+    </div>
+</body>
+</html>
